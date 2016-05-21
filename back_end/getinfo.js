@@ -14,8 +14,8 @@ module.exports = function(lat, lon, callback) {
 		response.error = 'No latitude or longitude supplied';
 		callback(response);
 	} else {
-		// getPlaces()
-		getFlickr()
+		getPlaces()
+		// getFlickr()
 		.then(getFlickr)
 		.then(allDone);
 	}

@@ -23,11 +23,11 @@ function initMap() {
 
 	function setPosition(position) {
 		if (current) console.log(getDistance(current, position));
+		marker.setPosition(position);
 		if (!current || (getDistance(current, position) > 0.01)) {
 			console.log('Updating');
 			document.getElementById('details').innerHTML = 'Updating...';
 			// map.setCenter(position);
-			marker.setPosition(position);
 			getInfo(position.lat(), position.lng());
 			current = position;
 		}
