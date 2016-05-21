@@ -26,6 +26,7 @@
 			var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
 
 			map = new google.maps.Map(document.getElementById('map'), {
+				mapTypeId: google.maps.MapTypeId.SATELLITE,
 				center: myLatlng,
 				zoom: 8
 			});
@@ -42,6 +43,7 @@
 			}, 500));
 
 			function setPosition(position) {
+				map.setCenter(position);
 				marker.setPosition(position);
 				getInfo(position.lat(), position.lng());
 			}
