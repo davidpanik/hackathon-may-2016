@@ -9,6 +9,7 @@
 		"prettyjson": "latest",
 		"moment": "latest",
 		"assert": "latest",
-		"q": "latest"
+		"q": "latest",
+		"request": "latest"
 	}
 }
