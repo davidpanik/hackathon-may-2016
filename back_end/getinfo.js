@@ -1,3 +1,6 @@
+var Q = require('q');
+
+
 module.exports = function(lat, lon, callback) {
 	var radius = 10;
 	var response = {
@@ -6,16 +9,27 @@ module.exports = function(lat, lon, callback) {
 		'radius': radius
 	};
 
-
 	if (!lat || !lon) {
 		response.error = 'No latitude or longitude supplied';
 		callback(response);
 	} else {
-		// Do stuff here!
+		getFlickr()
+		.then(allDone);
+	}
+
+	function getFlickr() {
+		var deferred = Q.defer();
+
 		require('./flickr')(lat, lon, radius, function(data) {
 			response.flickr = data;
 
-			callback(data);
+			deferred.resolve();
 		});
+
+		return deferred.promise;
+	}
+
+	function allDone() {
+		callback(response);
 	}
 };
