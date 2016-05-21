@@ -2,6 +2,7 @@ var request = require('request');
 
 module.exports = function(lat, lon, radius, callback) {
 	var response = {};
+	var maxImageToReturn = 10;
 
 	request
 		.post({
@@ -22,6 +23,8 @@ module.exports = function(lat, lon, radius, callback) {
 					response.error = err;
 				} else {
 					var data = JSON.parse(body);
+
+					data.photos.photo = data.photos.photo.slice(0, maxImageToReturn);
 
 					var photos = [];
 
