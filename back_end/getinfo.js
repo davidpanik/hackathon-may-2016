@@ -3,6 +3,7 @@ var Q = require('q');
 
 module.exports = function(lat, lon, callback) {
 	var radius = 5000;
+	var limit = 10;
 	var response = {
 		'latitide': lat,
 		'longitude': lon,
@@ -19,9 +20,13 @@ module.exports = function(lat, lon, callback) {
 	}
 
 	function getPlaces() {
-		var deferred = Q.defer();
+		var deferred = Q.defer(),
+			params = {
+				radius: radius,
+				limit: limit
+			};
 
-		require('./places')(lat, lon, radius, function(data) {
+		require('./places')(lat, lon, params, function(data) {
 			response.places = data;
 
 			deferred.resolve();
