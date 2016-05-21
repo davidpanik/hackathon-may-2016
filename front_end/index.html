@@ -65,7 +65,7 @@
 
 			function getInfo(lat, lon) {
 				ajax('/getinfo', { lat: lat, lon: lon }, function(data) {
-					console.log(data);
+					//console.log(data);
 					render('details', 'detailsTemplate', data);
 				});
 			}
