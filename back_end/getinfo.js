@@ -14,7 +14,8 @@ module.exports = function(lat, lon, callback) {
 		response.error = 'No latitude or longitude supplied';
 		callback(response);
 	} else {
-		getPlaces()
+		// getPlaces()
+		getFlickr()
 		.then(getFlickr)
 		.then(allDone);
 	}
@@ -29,7 +30,7 @@ module.exports = function(lat, lon, callback) {
 		require('./places')(lat, lon, params, function(data, place) {
 			response.places = data;
 			response.country = place;
-
+			console.log('Got places');
 			deferred.resolve();
 		});
 
@@ -41,7 +42,7 @@ module.exports = function(lat, lon, callback) {
 
 		require('./flickr')(lat, lon, radius, function(data) {
 			response.flickr = data;
-
+			console.log('Got Flickr');
 			deferred.resolve();
 		});
 
@@ -49,6 +50,7 @@ module.exports = function(lat, lon, callback) {
 	}
 
 	function allDone() {
+		console.log('Finished getting info');
 		callback(response);
 	}
 };

@@ -32,7 +32,7 @@
 	<div id="details"></div>
 
 	<script id="detailsTemplate" type="handlebars">
-		<h1>Hello</h1>
+		<h1>{{country.long_name}}</h1>
 
 		{{#each places}}
 			<a href="{{url}}" target="_blank">{{name}}, {{formatted_address}}</a>
@@ -45,6 +45,6 @@
 
 	<script src="./main.js"></script>
 	<script src="./handlebars-v4.0.5.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCy8P_lQ1gK5ppUGTs7bjfN4wTpPWd-ks&callback=initMap" async defer></script>
 </body>
 </html>

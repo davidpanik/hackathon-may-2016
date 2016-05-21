@@ -1,7 +1,8 @@
 var map, current;
 
 function initMap() {
-	var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+	// var myLatlng = new google.maps.LatLng(-25.363882,131.044922); // Ayers rock
+	var myLatlng = new google.maps.LatLng(55.9587389,-3.1954316); // Edinburgh
 
 	map = new google.maps.Map(document.getElementById('map'), {
 		mapTypeId: google.maps.MapTypeId.SATELLITE,
@@ -12,17 +13,17 @@ function initMap() {
 	var marker = new google.maps.Marker({
 		position: myLatlng,
 		map: map,
-		icon: 'plane.png',
-		draggable: true
+		icon: 'plane.png'
+		// draggable: true
 	});
 
-	map.addListener('center_changed', function() {
+	map.addListener('center_changed', debounce(function() {
 		setPosition(map.getCenter());
-	});
+	}, 500));
 
 	function setPosition(position) {
 		if (current) console.log(getDistance(current, position));
-		if (!current || (getDistance(current, position) > 0.005)) {
+		if (!current || (getDistance(current, position) > 0.01)) {
 			console.log('Updating');
 			document.getElementById('details').innerHTML = 'Updating...';
 			// map.setCenter(position);
