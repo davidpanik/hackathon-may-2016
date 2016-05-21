@@ -13,12 +13,12 @@ module.exports = function(rootPath) {
 		var urlParts = url.parse(request.url, true);
 		var query = urlParts.query;
 
-		var getInfo = require('./getinfo')(query.lat, query.lon);
-
 		console.log('Getting information for ' + query.lat + ', ' + query.lon);
 
-		response.setHeader('Content-Type', 'application/json');
-		response.send(JSON.stringify(getInfo, null, 4));
+		require('./getinfo')(query.lat, query.lon, function(data) {
+			response.setHeader('Content-Type', 'application/json');
+			response.send(JSON.stringify(data, null, 4));
+		});
 	});
 
 	// Serve up everything else

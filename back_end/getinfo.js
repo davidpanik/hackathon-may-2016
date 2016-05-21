@@ -1,4 +1,4 @@
-module.exports = function(lat, lon) {
+module.exports = function(lat, lon, callback) {
 	var radius = 10;
 	var response = {
 		'latitide': lat,
@@ -9,9 +9,13 @@ module.exports = function(lat, lon) {
 
 	if (!lat || !lon) {
 		response.error = 'No latitude or longitude supplied';
+		callback(response);
 	} else {
 		// Do stuff here!
-	}
+		require('./flickr')(lat, lon, radius, function(data) {
+			response.flickr = data;
 
-	return response;
+			callback(data);
+		});
+	}
 };
