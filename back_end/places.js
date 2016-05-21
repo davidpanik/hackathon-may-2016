@@ -1,6 +1,4 @@
-var Q = require('q');
-
-module.exports = function(lat, lon, dist) {
+module.exports = function(lat, lon, dist, callback) {
 
 	var apiKey = 'AIzaSyDznjpJXSiTygHy4zLNrqy-TMqZIPBtXWo',
 		outputFormat = 'json';
@@ -19,13 +17,9 @@ module.exports = function(lat, lon, dist) {
       radius: dist
   };
 
-	var deferred = Q.defer();
-
   radarSearch(parameters, function (error, response) {
       if (error) throw error;
 
-      deferred.resolve(response);
+      callback(response);
   });
-
-	return deferred.promise;
 }

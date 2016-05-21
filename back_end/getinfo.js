@@ -13,8 +13,21 @@ module.exports = function(lat, lon, callback) {
 		response.error = 'No latitude or longitude supplied';
 		callback(response);
 	} else {
-		getFlickr()
+		getPlaces()
+		.then(getFlickr)
 		.then(allDone);
+	}
+
+	function getPlaces() {
+		var deferred = Q.defer();
+
+		require('./places')(lat, lon, radius, function(data) {
+			response.places = data;
+
+			deferred.resolve();
+		});
+
+		return deferred.promise;
 	}
 
 	function getFlickr() {

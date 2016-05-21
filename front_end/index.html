@@ -36,6 +36,39 @@
 				icon: 'plane.png',
 				draggable: true
 			});
+
+			map.addListener('center_changed', function() {
+				map.panTo(marker.getPosition());
+			});
+
+			function getInfo(lat, lon) {
+
+			}
+		}
+
+		function ajax(url, data, callback) {
+			url += '?';
+
+			for (var key in data) {
+				url += key + '=' + data[key] + '&';
+			}
+
+			var request = new XMLHttpRequest();
+			request.open('GET', url, true);
+
+			request.onload = function() {
+				if (this.status >= 200 && this.status < 400) {
+					callback(this.response);
+				} else {
+					console.log('AJAX error on ' + url);
+				}
+			};
+
+			request.onerror = function() {
+				console.log('AJAX error on ' + url);
+			};
+
+			request.send();
 		}
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
