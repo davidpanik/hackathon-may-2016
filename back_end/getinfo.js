@@ -1,8 +1,11 @@
 module.exports = function(lat, lon) {
+	var radius = 10;
 	var response = {
 		'latitide': lat,
-		'longitude': lon
+		'longitude': lon,
+		'radius': radius
 	};
+
 
 	if (!lat || !lon) {
 		response.error = 'No latitude or longitude supplied';
