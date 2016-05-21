@@ -22,8 +22,9 @@ function initMap() {
 
 	function setPosition(position) {
 		if (current) console.log(getDistance(current, position));
-		if (!current || (getDistance(current, position) > 0.003)) {
+		if (!current || (getDistance(current, position) > 0.005)) {
 			console.log('Updating');
+			document.getElementById('details').innerHTML = 'Updating...';
 			// map.setCenter(position);
 			marker.setPosition(position);
 			getInfo(position.lat(), position.lng());

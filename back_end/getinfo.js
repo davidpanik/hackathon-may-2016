@@ -26,8 +26,9 @@ module.exports = function(lat, lon, callback) {
 				limit: limit
 			};
 
-		require('./places')(lat, lon, params, function(data) {
+		require('./places')(lat, lon, params, function(data, place) {
 			response.places = data;
+			response.country = place;
 
 			deferred.resolve();
 		});
