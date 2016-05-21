@@ -46,7 +46,7 @@ module.exports = function(lat, lon, params, callback) {
 
   var parameters = {
       location: [lat, lon],
-      types: "locality",
+      types: ['locality', 'natural_feature'],
       radius: params.dist || 10000
   };
 
