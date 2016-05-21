@@ -25,6 +25,30 @@
 			overflow-x: hidden;
 			overflow-y: auto;
 		}
+
+		#country-name {
+			margin: 0px 10px;
+
+		}
+
+		#nearby-places h2{
+			margin: 15px 10px 5px;
+		}
+
+		#nearby-places a {
+			display: block;
+	    margin: 0 10px;
+	    padding: 10px 5px;
+	    border-bottom: 1px solid black;
+		}
+
+		#photos {
+			margin-top: 20px;
+		}
+
+		#photos img {
+	    width: 100%;
+		}
 	</style>
 </head>
 <body>
@@ -32,15 +56,20 @@
 	<div id="details"></div>
 
 	<script id="detailsTemplate" type="handlebars">
-		<h1>{{country.long_name}}</h1>
+		<h1 id="country-name">You are currently flying over {{country.long_name}}</h1>
 
-		{{#each places}}
-			<a href="{{url}}" target="_blank">{{name}}, {{formatted_address}}</a>
-		{{/each}}
+		<div id="nearby-places">
+			<h2>Places nearby</h2>
+			{{#each places}}
+				<a class="place-link" href="{{url}}" target="_blank">{{name}}</a>
+			{{/each}}
+		</div>
 
-		{{#each flickr}}
-			<img src="{{url}}" title="{{title}}" />
-		{{/each}}
+		<div id="photos">
+			{{#each flickr}}
+				<img src="{{url}}" title="{{title}}" />
+			{{/each}}
+		</div>
 	</script>
 
 	<script src="./main.js"></script>
