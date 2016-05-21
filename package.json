@@ -10,6 +10,7 @@
 		"moment": "latest",
 		"assert": "latest",
 		"q": "latest",
-		"request": "latest"
+		"request": "latest",
+		"googleplaces": "latest"
 	}
 }
