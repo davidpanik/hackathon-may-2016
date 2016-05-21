@@ -45,7 +45,7 @@ module.exports = function(lat, lon, params, callback) {
 
     	detailsRequest(response.results[i].reference, function(details) {
 
-    		formatted.push(details);
+    		formatted.push(details.result);
 
     		if(i === 10) {
 		      callback(formatted);
