@@ -56,9 +56,15 @@ module.exports = function(lat, lon, params, callback) {
     var formatted = [],
     	primaryPlace = {},
     	count = 0,
+    	limit = response.results.length < 10 ? response.results.length : 10,
      	i;
 
-    for (i = 0; i < 10; i++) {
+   	if(!response.results.length) {
+   		callback([], {});
+   		return;
+   	}
+
+    for (i = 0; i < limit; i++) {
     	if(!response.results[i]) {
     		continue;
     	}
@@ -72,7 +78,7 @@ module.exports = function(lat, lon, params, callback) {
     			primaryPlace = getPrimaryPlaceInfo(details.result);
     		}
 
-    		if(count === 10) {
+    		if(count === limit - 1) {
 		      callback(formatted, primaryPlace);
     		}
     	});
