@@ -35,7 +35,6 @@ module.exports = function(lat, lon, params, callback) {
  			if(placeDetails.address_components[i].types && placeDetails.address_components[i].types.length) {
 	 			for(var j = 0; j < placeDetails.address_components[i].types.length; j++) {
 	 				if(placeDetails.address_components[i].types[j] === 'country') {
-
 	 					return placeDetails.address_components[i];
 	 				}
 	 			}
@@ -71,7 +70,6 @@ module.exports = function(lat, lon, params, callback) {
     		if(iteration === 0) {
     			// fill primary place
     			primaryPlace = getPrimaryPlaceInfo(details.result);
-    			console.log(primaryPlace);
     		}
 
     		if(count === 10) {
