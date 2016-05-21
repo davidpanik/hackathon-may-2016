@@ -1,1 +1,1 @@
-console.log('hello world');
+var webserver  = require('./back_end/webserver')(__dirname); // Start webserver for the front-end
