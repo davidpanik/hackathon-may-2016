@@ -12,5 +12,12 @@
 		"q": "latest",
 		"request": "latest",
 		"googleplaces": "latest"
-	}
+	},
+	"scripts": {
+		"start": "node script.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/davidpanik/hackathon-may-2016/"
+	},
 }
