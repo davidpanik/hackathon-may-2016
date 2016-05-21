@@ -12,10 +12,11 @@ module.exports = function(lat, lon, radius, callback) {
 				'api_key': '97064c0d86c4b4f7a518c783aee67e11',
 				'lat': lat,
 				'lon': lon,
-				'radius': radius,
+				'radius': Math.round(radius / 1000),
 				'format': 'json',
 				'safe_search': 1,
 				'sort': 'interestingness-desc',
+				'radius_units': 'km',
 				'nojsoncallback': 1
 			}},
 			function(err, httpResponse, body) {

@@ -2,7 +2,7 @@ var Q = require('q');
 
 
 module.exports = function(lat, lon, callback) {
-	var radius = 10;
+	var radius = 5000;
 	var response = {
 		'latitide': lat,
 		'longitude': lon,
