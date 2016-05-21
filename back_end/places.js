@@ -32,11 +32,13 @@ module.exports = function(lat, lon, params, callback) {
  		}
 
  		for (var i = 0;i < placeDetails.address_components.length; i++) {
- 			for(var j = 0; j < placeDetails.address_components[i].types.length; j++) {
- 				if(placeDetails.address_components[i].types[j] === 'country') {
+ 			if(placeDetails.address_components[i].types && placeDetails.address_components[i].types.length) {
+	 			for(var j = 0; j < placeDetails.address_components[i].types.length; j++) {
+	 				if(placeDetails.address_components[i].types[j] === 'country') {
 
- 					return placeDetails.address_components[i];
- 				}
+	 					return placeDetails.address_components[i];
+	 				}
+	 			}
  			}
  		};
 
