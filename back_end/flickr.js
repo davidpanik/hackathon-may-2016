@@ -2,7 +2,7 @@ var request = require('request');
 
 module.exports = function(lat, lon, radius, callback) {
 	var response = {};
-	var maxImageToReturn = 10;
+	var maxImageToReturn = 9;
 
 	request
 		.post({
@@ -24,20 +24,18 @@ module.exports = function(lat, lon, radius, callback) {
 					response.error = err;
 				} else {
 					var data = JSON.parse(body);
-
-					data.photos.photo = data.photos.photo.slice(0, maxImageToReturn);
-
 					var photos = [];
 
-					data.photos.photo.forEach(function(photo) {
-						console.log(photo);
+					if (data.photos.photo) {
+						data.photos.photo = data.photos.photo.slice(0, maxImageToReturn);
 
-						photos.push({
-							title: photo.title,
-							url: 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '.jpg'
+						data.photos.photo.forEach(function(photo) {
+							photos.push({
+								title: photo.title,
+								url: 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_q.jpg'
+							});
 						});
-					});
-
+					}
 
 					response = photos;
 				}

@@ -22,6 +22,8 @@
 			right: 0;
 			width: 30%;
 			bottom: 0;
+			overflow-x: hidden;
+			overflow-y: auto;
 		}
 	</style>
 </head>
@@ -30,7 +32,7 @@
 	<div id="details"></div>
 
 	<script>
-		var map;
+		var map, current;
 
 		function initMap() {
 			var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
@@ -53,9 +55,12 @@
 			}, 500));
 
 			function setPosition(position) {
-				map.setCenter(position);
-				marker.setPosition(position);
-				getInfo(position.lat(), position.lng());
+				if (current != position) {
+					map.setCenter(position);
+					marker.setPosition(position);
+					getInfo(position.lat(), position.lng());
+					current = position;
+				}
 			}
 
 			function getInfo(lat, lon) {
@@ -110,6 +115,10 @@
 
 	<script id="detailsTemplate" type="handlebars">
 		<h1>Hello</h1>
+
+		{{#each flickr}}
+			<img src="{{url}}"/>
+		{{/each}}
 	</script>
 
 	<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
