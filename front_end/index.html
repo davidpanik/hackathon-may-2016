@@ -37,16 +37,18 @@
 				draggable: true
 			});
 
-			map.addListener('center_changed', function() {
-				map.panTo(marker.getPosition());
-			});
+			map.addListener('center_changed', debounce(function() {
+				setPosition(map.getCenter());
+			}, 500));
 
-			getInfo(-25.363882, 131.044922);
+			function setPosition(position) {
+				marker.setPosition(position);
+				getInfo(position.lat(), position.lng());
+			}
 
 			function getInfo(lat, lon) {
 				ajax('/getinfo', { lat: lat, lon: lon }, function(data) {
 					console.log(data);
-					window.bob = data;
 				});
 			}
 		}
@@ -74,6 +76,17 @@
 			};
 
 			request.send();
+		}
+
+		function debounce(fn, delay) {
+			var timer = null;
+			return function () {
+				var context = this, args = arguments;
+				clearTimeout(timer);
+				timer = setTimeout(function () {
+					fn.apply(context, args);
+				}, delay);
+			};
 		}
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
