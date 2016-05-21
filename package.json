@@ -1,0 +1,14 @@
+{
+	"name": "hackathon-may-2016",
+	"version": "0.1.0",
+	"devDependencies": {
+	},
+	"dependencies": {
+		"express": "latest",
+		"request": "latest",
+		"prettyjson": "latest",
+		"moment": "latest",
+		"assert": "latest",
+		"q": "latest"
+	}
+}
