@@ -13,15 +13,29 @@ module.exports = function(lat, lon, radius, callback) {
 				'lon': lon,
 				'radius': radius,
 				'format': 'json',
+				'safe_search': 1,
+				'sort': 'interestingness-desc',
 				'nojsoncallback': 1
 			}},
 			function(err, httpResponse, body) {
-				console.log(JSON.stringify(body, null, 4));
-
 				if (err) {
 					response.error = err;
 				} else {
-					response = body;
+					var data = JSON.parse(body);
+
+					var photos = [];
+
+					data.photos.photo.forEach(function(photo) {
+						console.log(photo);
+
+						photos.push({
+							title: photo.title,
+							url: 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '.jpg'
+						});
+					});
+
+
+					response = photos;
 				}
 
 				callback(response);
