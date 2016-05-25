@@ -9,7 +9,7 @@ module.exports = function(lat, lon, radius, callback) {
 			url: 'https://api.flickr.com/services/rest/',
 			qs: {
 				'method': 'flickr.photos.search',
-				'api_key': '97064c0d86c4b4f7a518c783aee67e11',
+				'api_key': '802ec51eec414c27bd05096065529c11',
 				'lat': lat,
 				'lon': lon,
 				'radius': Math.round(radius / 1000),
@@ -26,7 +26,7 @@ module.exports = function(lat, lon, radius, callback) {
 					var data = JSON.parse(body);
 					var photos = [];
 
-					if (data.photos.photo) {
+					if (data.photos && data.photos.photo) {
 						data.photos.photo = data.photos.photo.slice(0, maxImageToReturn);
 
 						data.photos.photo.forEach(function(photo) {
